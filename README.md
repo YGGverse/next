@@ -43,3 +43,32 @@ php src/nex.php host=127.0.0.1 port=1900 path=/target/dir
   * `{port}` - peer port
   * `{path}` - path requested
   * `{goal}` - goal destination returned
+
+### Autostart
+
+Launch server as the `systemd` service
+
+Following example mean you have `next` server installed into home directory of `next` user (`useradd -m next`)
+
+1. `sudo nano /etc/systemd/system/next.service` - create new service:
+
+``` next.service
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+User=next
+Group=next
+ExecStart=/usr/bin/php /home/next/next/src/nex.php path=/home/next/public
+StandardOutput=file:/home/next/debug.log
+StandardError=file:/home/next/error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+2. `sudo systemctl daemon-reload` - reload systemd configuration
+3. `sudo systemctl enable next` - enable `next` service on system startup
+4. `sudo systemctl start next` - start `next` server
