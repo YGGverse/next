@@ -191,7 +191,9 @@ $server->start(
             ],
             DIRECTORY_SEPARATOR,
             NEXT_PATH . trim(
-                $request
+                str_replace(
+                    '\\', '/', $request
+                )
             )
         );
 
