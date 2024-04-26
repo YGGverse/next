@@ -38,6 +38,15 @@ foreach ((array) $argv as $item)
                     DIRECTORY_SEPARATOR
                 ) . DIRECTORY_SEPARATOR;
 
+                if (!str_starts_with($path, DIRECTORY_SEPARATOR))
+                {
+                    print(
+                        _('absolute path required')
+                    ) . PHP_EOL;
+
+                    exit;
+                }
+
                 if (!is_dir($path) || !is_readable($path))
                 {
                     print(
@@ -69,6 +78,15 @@ foreach ((array) $argv as $item)
                     (string) $argument['value'],
                     DIRECTORY_SEPARATOR
                 ) . DIRECTORY_SEPARATOR;
+
+                if (!str_starts_with($fail, DIRECTORY_SEPARATOR))
+                {
+                    print(
+                        _('absolute path required')
+                    ) . PHP_EOL;
+
+                    exit;
+                }
 
                 if (!is_file($fail) || !is_readable($fail))
                 {
