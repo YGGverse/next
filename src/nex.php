@@ -189,7 +189,7 @@ $server->start(
                 '/[\.]+\//',     // relative directory paths
                 '/[\/]+\//',     // remove extra slashes
             ],
-            '/',
+            DIRECTORY_SEPARATOR,
             NEXT_PATH . trim(
                 $request
             )
