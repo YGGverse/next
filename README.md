@@ -42,4 +42,4 @@ php src/nex.php host=127.0.0.1 port=1900 path=/target/dir
   * `{host}` - peer host
   * `{port}` - peer port
   * `{path}` - path requested
-  * `{goal}` - goal returned
+  * `{goal}` - goal destination returned
