@@ -5,8 +5,8 @@ PHP 8 Server for [Nex Protocol](nex://piclog.blue/nex/info/specification.txt), b
 ## Install
 
 * `git clone https://github.com/YGGverse/next.git`
-* `cd next` - navigate the server directory
-* `composer update` - get latest dependencies
+* `cd next` - navigate into the server directory
+* `composer update` - grab latest dependencies
 
 ## NEX
 
