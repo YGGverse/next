@@ -34,7 +34,7 @@ php src/nex.php host=127.0.0.1 port=1900 path=/target/dir
 * `port` - `1900` by default
 * `file` - index **file name** that server try to open in path requested, disabled by default
 * `fail` - failure **file path** that contain template (e.g. `error.gmi`) for the error handler, `fail` text by default
-* `list` - show content listing in the requested directory (when index file not found), enabled by default
+* `list` - show content listing in the requested directory (when index file not found), `yes` by default
 * `size` - limit request length in bytes, `1024` by default
 * `dump` - dump queries, blank to disable, default: `[{time}] [{code}] {host}:{port} {path}`
   * `{time}` - event time in `c` format
