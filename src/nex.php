@@ -262,6 +262,7 @@ $server->start(
             );
         }
 
+        // Send response
         return empty($response) ? NEXT_FAIL : $response;
     }
 );
