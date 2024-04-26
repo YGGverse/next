@@ -34,7 +34,7 @@ foreach ((array) $argv as $item)
             case 'path':
 
                 $path = rtrim(
-                    $argument['value'],
+                    (string) $argument['value'],
                     DIRECTORY_SEPARATOR
                 ) . DIRECTORY_SEPARATOR;
 
@@ -66,7 +66,7 @@ foreach ((array) $argv as $item)
             case 'fail':
 
                 $fail = rtrim(
-                    $argument['value'],
+                    (string) $argument['value'],
                     DIRECTORY_SEPARATOR
                 ) . DIRECTORY_SEPARATOR;
 
