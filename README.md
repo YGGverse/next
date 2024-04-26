@@ -1,6 +1,6 @@
 # next
 
-PHP 8 Server for [Nex Protocol](nex://piclog.blue/nex/info/specification.txt), based on [nex-php](https://github.com/YGGverse/nex-php) library
+PHP 8 Server for [Nex Protocol](nex://piclog.blue/nex/info/specification.txt), based on the [nex-php](https://github.com/YGGverse/nex-php) library
 
 ## Install
 
@@ -17,7 +17,7 @@ php src/nex.php\
     path=/path/to/dir
 ```
 
-### Arguments
+### Options
 
 * `host` - optional string, `127.0.0.1` by default
 * `port` - optional int, `1900` by default
