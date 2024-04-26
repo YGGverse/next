@@ -6,7 +6,7 @@ require_once __DIR__ .
              DIRECTORY_SEPARATOR . 'vendor' .
              DIRECTORY_SEPARATOR . 'autoload.php';
 
-// Parse requested arguments
+// Parse startup arguments
 foreach ((array) $argv as $item)
 {
     if (preg_match('/^(?<key>[^=]+)=(?<value>.*)$/', $item, $argument))
