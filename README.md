@@ -16,7 +16,7 @@ For security reasons, next server prevents any access to the hidden files (start
 
 ### Start
 
-Create as many servers as wanted by providing separated `host` and `port` using optional arguments
+Create as many servers as wanted by providing different `host` and `port` using optional arguments
 
 ``` bash
 php src/nex.php host=127.0.0.1 port=1900 path=/target/dir
