@@ -1,0 +1,21 @@
+{
+    "name": "yggverse/next",
+    "description": "PHP 8 Server for Nex Protocol",
+    "keywords": [ "yggverse", "next", "nex", "nex-protocol", "server" ],
+    "homepage": "https://github.com/yggverse/pulsar",
+    "type": "project",
+    "require": {
+        "yggverse/nex": "^1.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yggverse\\Next\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "YGGverse"
+        }
+    ]
+}
