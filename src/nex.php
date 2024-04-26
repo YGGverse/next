@@ -192,7 +192,7 @@ $server->start(
             DIRECTORY_SEPARATOR,
             NEXT_PATH . trim(
                 str_replace(
-                    '\\', '/', $request
+                    '\\', '/', filter_var($request, FILTER_SANITIZE_URL)
                 )
             )
         );
