@@ -12,7 +12,7 @@ PHP 8 Server for [Nex Protocol](nex://piclog.blue/nex/info/specification.txt), b
 
 Optimal to serve static files
 
-For security reasons, next server prevents any access to the hidden files (started with dot)
+For security reasons, `next` server prevents any access to the hidden files (started with dot)
 
 ### Start
 
