@@ -50,7 +50,8 @@ Launch server as the `systemd` service
 
 Following example mean you have `next` server installed into home directory of `next` user (`useradd -m next`)
 
-1. `sudo nano /etc/systemd/system/next.service` - create new service:
+1. `mkdir /home/next/public` - make sure you have created public folder
+2. `sudo nano /etc/systemd/system/next.service` - create new service:
 
 ``` next.service
 [Unit]
@@ -69,6 +70,6 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-2. `sudo systemctl daemon-reload` - reload systemd configuration
-3. `sudo systemctl enable next` - enable `next` service on system startup
-4. `sudo systemctl start next` - start `next` server
+3. `sudo systemctl daemon-reload` - reload systemd configuration
+4. `sudo systemctl enable next` - enable `next` service on system startup
+5. `sudo systemctl start next` - start `next` server
