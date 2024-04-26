@@ -164,7 +164,7 @@ $server->start(
         string $connect
     ): ?string
     {
-        // Make goal request
+        // Filter goal request
         $goal = preg_replace(
             [
                 '/(^|\/)[\.]+/', // hidden items started with dot
