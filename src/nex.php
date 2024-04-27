@@ -192,8 +192,10 @@ $server->start(
             ],
             DIRECTORY_SEPARATOR,
             NEXT_PATH . filter_var(
-                $request,
-                FILTER_SANITIZE_URL
+                urldecode(
+                    $request
+                ),
+                FILTER_SANITIZE_URL // @TODO
             )
         );
 
