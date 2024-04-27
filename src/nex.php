@@ -195,7 +195,7 @@ $server->start(
                 urldecode(
                     $request
                 ),
-                FILTER_SANITIZE_URL // @TODO
+                FILTER_SANITIZE_URL
             )
         );
 
@@ -280,8 +280,8 @@ $server->start(
                         (int) !empty($response),
                         parse_url($connect, PHP_URL_HOST),
                         parse_url($connect, PHP_URL_PORT),
-                        empty($request) ? '/' : trim($request),
-                        $goal
+                        str_replace('%', '%%', empty($request) ? '/' : trim($request)),
+                        str_replace('%', '%%', $goal)
                     ],
                     NEXT_DUMP
                 ) . PHP_EOL
