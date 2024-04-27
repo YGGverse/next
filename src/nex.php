@@ -209,13 +209,13 @@ $server->start(
             ) . DIRECTORY_SEPARATOR;
         }
 
-        // Validate realpath exists, started with path defined and not contains hidden entities
+        // Validate realpath exists, started with path defined and does not contain hidden entities
         if ($realpath && str_starts_with($realpath, NEXT_PATH) && false === strpos($realpath, DIRECTORY_SEPARATOR . '.'))
         {
             // Try directory
             if (is_dir($realpath))
             {
-                // Try index file first on enabled
+                // Try index file on enabled
                 if (NEXT_FILE && file_exists($realpath . NEXT_FILE) && is_readable($realpath . NEXT_FILE))
                 {
                     $response = file_get_contents(
@@ -223,18 +223,20 @@ $server->start(
                     );
                 }
 
-                // Try build directory listing on enabled
+                // Try directory listing on enabled
                 else if (NEXT_LIST)
                 {
-                    $links = [];
+                    $directories = [];
 
-                    foreach ((array) scandir($realpath) as $link)
+                    $files = [];
+
+                    foreach ((array) scandir($realpath) as $filename)
                     {
                         // Process system entities
-                        if (str_starts_with($link, '.'))
+                        if (str_starts_with($filename, '.'))
                         {
                             // Parent navigation
-                            if ($link == '..' && $parent = realpath($realpath . $link))
+                            if ($filename == '..' && $parent = realpath($realpath . $filename))
                             {
                                 $parent = rtrim(
                                     $parent,
@@ -243,7 +245,7 @@ $server->start(
 
                                 if (str_starts_with($parent, NEXT_PATH))
                                 {
-                                    $links[] = '=> ../';
+                                    $directories[mb_strtolower($filename)] = '=> ../';
                                 }
                             }
 
@@ -251,14 +253,14 @@ $server->start(
                         }
 
                         // Directory
-                        if (is_dir($realpath . $link))
+                        if (is_dir($realpath . $filename))
                         {
-                            if (is_readable($realpath . $link))
+                            if (is_readable($realpath . $filename))
                             {
-                                $links[] = sprintf(
+                                $directories[mb_strtolower($filename)] = sprintf(
                                     '=> %s/',
                                     urlencode(
-                                        $link
+                                        $filename
                                     )
                                 );
                             }
@@ -267,20 +269,28 @@ $server->start(
                         }
 
                         // File
-                        if (is_readable($realpath . $link))
+                        if (is_readable($realpath . $filename))
                         {
-                            $links[] = sprintf(
+                            $files[mb_strtolower($filename)] = sprintf(
                                 '=> %s',
                                 urlencode(
-                                    $link
+                                    $filename
                                 )
                             );
                         }
                     }
 
+                    // Sort by keys ASC
+                    ksort($directories);
+                    ksort($files);
+
+                    // Merge items
                     $response = implode(
                         PHP_EOL,
-                        $links
+                        array_merge(
+                            $directories,
+                            $files
+                        )
                     );
                 }
             }
