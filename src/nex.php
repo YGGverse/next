@@ -167,7 +167,7 @@ if (!defined('NEXT_SIZE')) define('NEXT_SIZE', 1024);
 
 if (!defined('NEXT_FAIL')) define('NEXT_FAIL', 'fail');
 
-if (!defined('NEXT_DUMP')) define('NEXT_DUMP', '[{time}] [{code}] {host}:{port} {path} {goal}');
+if (!defined('NEXT_DUMP')) define('NEXT_DUMP', '[{time}] [{code}] {host}:{port} {path} {real}');
 
 // Init server
 $server = new \Yggverse\Nex\Server(
@@ -182,15 +182,11 @@ $server->start(
         string $connect
     ): ?string
     {
-        // Filter goal request
-        $goal = preg_replace(
-            [
-                '/\\\/',         // unify separators
-                '/(^|\/)[\.]+/', // hidden items started with dot
-                '/[\.]+\//',     // relative directory paths
-                '/[\/]+\//',     // remove extra slashes
-            ],
-            DIRECTORY_SEPARATOR,
+        // Define response
+        $response = null;
+
+        // Build realpath
+        $realpath = realpath(
             NEXT_PATH . filter_var(
                 urldecode(
                     $request
@@ -199,86 +195,98 @@ $server->start(
             )
         );
 
-        // Define response
-        $response = null;
-
-        // Directory request
-        if (is_dir($goal))
+        // Make sure directory path ending with slash
+        if (is_dir($realpath))
         {
-            // Try index file first on enabled
-            if (NEXT_FILE && is_readable($goal . NEXT_FILE))
-            {
-                $response = file_get_contents(
-                    $goal . NEXT_FILE
-                );
-            }
+            $realpath = rtrim(
+                $realpath,
+                DIRECTORY_SEPARATOR
+            ) . DIRECTORY_SEPARATOR;
+        }
 
-            // Try directory listing on enabled
-            else if (NEXT_LIST && is_readable($goal))
+        // Validate realpath exists, started with path defined and destination resource is not hidden
+        if ($realpath && str_starts_with($realpath, NEXT_PATH) && !str_starts_with(basename($realpath), '.'))
+        {
+            // Try directory
+            if (is_dir($realpath))
             {
-                $links = [];
-
-                foreach ((array) scandir($goal) as $link)
+                // Try index file first on enabled
+                if (NEXT_FILE && file_exists($realpath . NEXT_FILE) && is_readable($realpath . NEXT_FILE))
                 {
-                    // Skip system entities
-                    if (str_starts_with($link, '.'))
+                    $response = file_get_contents(
+                        $realpath . NEXT_FILE
+                    );
+                }
+
+                // Try build directory listing on enabled
+                else if (NEXT_LIST)
+                {
+                    $links = [];
+
+                    foreach ((array) scandir($realpath) as $link)
                     {
-                        // Keep parent navigation entities only
-                        if ($link == '..' && $parent = realpath($goal . $link))
+                        // Process system entities
+                        if (str_starts_with($link, '.'))
                         {
-                            if (str_starts_with($parent . DIRECTORY_SEPARATOR, NEXT_PATH))
+                            // Parent navigation
+                            if ($link == '..' && $parent = realpath($realpath . $link))
                             {
-                                if (is_readable($parent))
+                                $parent = rtrim(
+                                    $parent,
+                                    DIRECTORY_SEPARATOR
+                                ) . DIRECTORY_SEPARATOR;
+
+                                if (str_starts_with($parent, NEXT_PATH))
                                 {
                                     $links[] = '=> ../';
                                 }
                             }
+
+                            continue; // skip everything else
                         }
 
-                        continue;
-                    }
+                        // Directory
+                        if (is_dir($realpath . $link))
+                        {
+                            if (is_readable($realpath . $link))
+                            {
+                                $links[] = sprintf(
+                                    '=> %s/',
+                                    urlencode(
+                                        $link
+                                    )
+                                );
+                            }
 
-                    // Directory
-                    if (is_dir($goal . $link))
-                    {
-                        if (is_readable($goal . $link))
+                            continue;
+                        }
+
+                        // File
+                        if (is_readable($realpath . $link))
                         {
                             $links[] = sprintf(
-                                '=> %s/',
+                                '=> %s',
                                 urlencode(
                                     $link
                                 )
                             );
                         }
-
-                        continue;
                     }
 
-                    // File
-                    if (is_readable($goal . $link))
-                    {
-                        $links[] = sprintf(
-                            '=> %s',
-                            urlencode(
-                                $link
-                            )
-                        );
-                    }
+                    $response = implode(
+                        PHP_EOL,
+                        $links
+                    );
                 }
+            }
 
-                $response = implode(
-                    PHP_EOL,
-                    $links
+            // Try file
+            else
+            {
+                $response = file_get_contents(
+                    $realpath
                 );
             }
-        }
-
-        // Try file
-        else if (is_readable($goal))
-        {
-            $response = file_get_contents(
-                $goal
-            );
         }
 
         // Dump request on enabled
@@ -292,7 +300,7 @@ $server->start(
                         '{host}',
                         '{port}',
                         '{path}',
-                        '{goal}',
+                        '{real}',
                     ],
                     [
                         (string) date('c'),
@@ -300,7 +308,7 @@ $server->start(
                         (string) parse_url($connect, PHP_URL_HOST),
                         (string) parse_url($connect, PHP_URL_PORT),
                         (string) str_replace('%', '%%', empty($request) ? '/' : trim($request)),
-                        (string) str_replace('%', '%%', $goal)
+                        (string) str_replace('%', '%%', $realpath)
                     ],
                     NEXT_DUMP
                 ) . PHP_EOL
@@ -308,6 +316,6 @@ $server->start(
         }
 
         // Send response
-        return empty($response) ? NEXT_FAIL : $response;
+        return is_null($response) ? NEXT_FAIL : $response;
     }
 );

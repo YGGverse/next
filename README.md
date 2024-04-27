@@ -36,13 +36,13 @@ php src/nex.php host=127.0.0.1 port=1900 path=/target/dir
 * `list` - show content listing in the requested directory (when index file not found), `yes` by default
 * `fail` - **filepath** that contain failure text or template (e.g. `error.gmi`), `fail` text by default
 * `size` - limit request length in bytes, `1024` by default
-* `dump` - dump queries or set blank to disable, default: `[{time}] [{code}] {host}:{port} {path} {goal}`
+* `dump` - dump queries or set blank to disable, default: `[{time}] [{code}] {host}:{port} {path} {real}`
   * `{time}` - event time in `c` format
   * `{code}` - formal response code: `1` - found, `0` - not found
   * `{host}` - peer host
   * `{port}` - peer port
   * `{path}` - path requested
-  * `{goal}` - goal destination returned
+  * `{real}` - **realpath** returned
 
 ### Autostart
 
