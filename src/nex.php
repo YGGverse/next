@@ -276,12 +276,12 @@ $server->start(
                         '{goal}',
                     ],
                     [
-                        date('c'),
-                        (int) !empty($response),
-                        parse_url($connect, PHP_URL_HOST),
-                        parse_url($connect, PHP_URL_PORT),
-                        str_replace('%', '%%', empty($request) ? '/' : trim($request)),
-                        str_replace('%', '%%', $goal)
+                        (string) date('c'),
+                        (string) (int) !empty($response),
+                        (string) parse_url($connect, PHP_URL_HOST),
+                        (string) parse_url($connect, PHP_URL_PORT),
+                        (string) str_replace('%', '%%', empty($request) ? '/' : trim($request)),
+                        (string) str_replace('%', '%%', $goal)
                     ],
                     NEXT_DUMP
                 ) . PHP_EOL
