@@ -185,6 +185,11 @@ $server->start(
         // Define response
         $response = null;
 
+        // Filter request
+        $request = trim(
+            $request
+        );
+
         // Build realpath
         $realpath = realpath(
             NEXT_PATH . filter_var(
@@ -204,8 +209,8 @@ $server->start(
             ) . DIRECTORY_SEPARATOR;
         }
 
-        // Validate realpath exists, started with path defined and destination resource is not hidden
-        if ($realpath && str_starts_with($realpath, NEXT_PATH) && !str_starts_with(basename($realpath), '.'))
+        // Validate realpath exists, started with path defined and not contains hidden entities
+        if ($realpath && str_starts_with($realpath, NEXT_PATH) && false === strpos($realpath, DIRECTORY_SEPARATOR . '.'))
         {
             // Try directory
             if (is_dir($realpath))
@@ -307,7 +312,7 @@ $server->start(
                         (string) (int) !empty($response),
                         (string) parse_url($connect, PHP_URL_HOST),
                         (string) parse_url($connect, PHP_URL_PORT),
-                        (string) str_replace('%', '%%', empty($request) ? '/' : trim($request)),
+                        (string) str_replace('%', '%%', empty($request) ? '/' : $request),
                         (string) str_replace('%', '%%', $realpath)
                     ],
                     NEXT_DUMP
