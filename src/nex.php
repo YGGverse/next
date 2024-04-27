@@ -220,11 +220,28 @@ $server->start(
 
                 foreach ((array) scandir($goal) as $link)
                 {
-                    // Skip hidden entities and make sure the destination is accessible
-                    if (!str_starts_with($link, '.') && is_readable($goal . $link))
+                    // Skip system entities
+                    if (str_starts_with($link, '.'))
                     {
-                        // Directory
-                        if (is_dir($link))
+                        // Keep parent navigation entities only
+                        if ($link == '..' && $parent = realpath($goal . $link))
+                        {
+                            if (str_starts_with($parent . DIRECTORY_SEPARATOR, NEXT_PATH))
+                            {
+                                if (is_readable($parent))
+                                {
+                                    $links[] = '=> ../';
+                                }
+                            }
+                        }
+
+                        continue;
+                    }
+
+                    // Directory
+                    if (is_dir($goal . $link))
+                    {
+                        if (is_readable($goal . $link))
                         {
                             $links[] = sprintf(
                                 '=> %s/',
@@ -234,16 +251,18 @@ $server->start(
                             );
                         }
 
-                        // File
-                        else
-                        {
-                            $links[] = sprintf(
-                                '=> %s',
-                                urlencode(
-                                    $link
-                                )
-                            );
-                        }
+                        continue;
+                    }
+
+                    // File
+                    if (is_readable($goal . $link))
+                    {
+                        $links[] = sprintf(
+                            '=> %s',
+                            urlencode(
+                                $link
+                            )
+                        );
                     }
                 }
 
