@@ -245,7 +245,7 @@ $server->start(
 
                                 if (str_starts_with($parent, NEXT_PATH))
                                 {
-                                    $directories[mb_strtolower($filename)] = '=> ../';
+                                    $directories[$filename] = '=> ../';
                                 }
                             }
 
@@ -257,7 +257,7 @@ $server->start(
                         {
                             if (is_readable($realpath . $filename))
                             {
-                                $directories[mb_strtolower($filename)] = sprintf(
+                                $directories[$filename] = sprintf(
                                     '=> %s/',
                                     urlencode(
                                         $filename
@@ -271,7 +271,7 @@ $server->start(
                         // File
                         if (is_readable($realpath . $filename))
                         {
-                            $files[mb_strtolower($filename)] = sprintf(
+                            $files[$filename] = sprintf(
                                 '=> %s',
                                 urlencode(
                                     $filename
@@ -281,8 +281,15 @@ $server->start(
                     }
 
                     // Sort by keys ASC
-                    ksort($directories);
-                    ksort($files);
+                    ksort(
+                        $directories,
+                        SORT_STRING | SORT_FLAG_CASE | SORT_NATURAL
+                    );
+
+                    ksort(
+                        $files,
+                        SORT_STRING | SORT_FLAG_CASE | SORT_NATURAL
+                    );
 
                     // Merge items
                     $response = implode(
