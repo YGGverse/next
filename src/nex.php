@@ -314,6 +314,12 @@ $server->start(
         // Dump request on enabled
         if (NEXT_DUMP)
         {
+            // Build connection URL #72811
+            $url = sprintf(
+                'nex://%s',
+                $connect
+            );
+
             printf(
                 str_ireplace(
                     [
@@ -327,8 +333,8 @@ $server->start(
                     [
                         (string) date('c'),
                         (string) (int) !empty($response),
-                        (string) parse_url($connect, PHP_URL_HOST),
-                        (string) parse_url($connect, PHP_URL_PORT),
+                        (string) parse_url($url, PHP_URL_HOST),
+                        (string) parse_url($url, PHP_URL_PORT),
                         (string) str_replace('%', '%%', empty($request) ? '/' : $request),
                         (string) str_replace('%', '%%', $realpath)
                     ],
