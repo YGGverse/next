@@ -185,15 +185,15 @@ $server->start(
         // Filter goal request
         $goal = preg_replace(
             [
+                '/\\\/',         // unify separators
                 '/(^|\/)[\.]+/', // hidden items started with dot
                 '/[\.]+\//',     // relative directory paths
                 '/[\/]+\//',     // remove extra slashes
             ],
             DIRECTORY_SEPARATOR,
-            NEXT_PATH . trim(
-                str_replace(
-                    '\\', '/', filter_var($request, FILTER_SANITIZE_URL)
-                )
+            NEXT_PATH . filter_var(
+                $request,
+                FILTER_SANITIZE_URL
             )
         );
 
