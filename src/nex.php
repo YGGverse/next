@@ -226,7 +226,9 @@ $server->start(
                         {
                             $links[] = sprintf(
                                 '=> %s/',
-                                $link
+                                urlencode(
+                                    $link
+                                )
                             );
                         }
 
@@ -235,7 +237,9 @@ $server->start(
                         {
                             $links[] = sprintf(
                                 '=> %s',
-                                $link
+                                urlencode(
+                                    $link
+                                )
                             );
                         }
                     }
