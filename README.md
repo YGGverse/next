@@ -1,6 +1,6 @@
 # next
 
-PHP 8 Server for [NEX Protocol](nex://piclog.blue/nex/info/specification.txt), based on the [nex-php](https://github.com/YGGverse/nex-php) library
+PHP 8 Server for [NEX Protocol](https://nightfall.city/nex/info/specification.txt), based on the [nex-php](https://github.com/YGGverse/nex-php) library
 
 ## Install
 
