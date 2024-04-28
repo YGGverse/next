@@ -210,7 +210,7 @@ $server->start(
         }
 
         // Validate realpath exists, started with path defined and does not contain hidden entities
-        if ($realpath && str_starts_with($realpath, NEXT_PATH) && false === strpos($realpath, DIRECTORY_SEPARATOR . '.'))
+        if ($realpath && str_starts_with($realpath, NEXT_PATH) && !str_contains($realpath, DIRECTORY_SEPARATOR . '.'))
         {
             // Try directory
             if (is_dir($realpath))
