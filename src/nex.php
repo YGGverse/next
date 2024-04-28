@@ -167,7 +167,7 @@ if (!defined('NEXT_SIZE')) define('NEXT_SIZE', 1024);
 
 if (!defined('NEXT_FAIL')) define('NEXT_FAIL', 'fail');
 
-if (!defined('NEXT_DUMP')) define('NEXT_DUMP', '[{time}] [{code}] {host}:{port} {path} {real}');
+if (!defined('NEXT_DUMP')) define('NEXT_DUMP', '[{time}] [{code}] {host}:{port} {path} {real} {size} bytes');
 
 // Init server
 $server = new \Yggverse\Nex\Server(
@@ -331,14 +331,16 @@ $server->start(
                         '{port}',
                         '{path}',
                         '{real}',
+                        '{size}'
                     ],
                     [
                         (string) date('c'),
                         (string) (int) !empty($response),
                         (string) parse_url($url, PHP_URL_HOST),
                         (string) parse_url($url, PHP_URL_PORT),
-                        (string) str_replace('%', '%%', empty($request) ? '/' : $request),
-                        (string) str_replace('%', '%%', $realpath)
+                        (string) str_replace('%', '%%', empty($request)  ? '/' : $request),
+                        (string) str_replace('%', '%%', empty($realpath) ? '!' : $realpath),
+                        (string) mb_strlen((string) $response)
                     ],
                     NEXT_DUMP
                 ) . PHP_EOL
@@ -346,6 +348,6 @@ $server->start(
         }
 
         // Send response
-        return is_null($response) ? NEXT_FAIL : $response;
+        return is_string($response) ? $response : NEXT_FAIL;
     }
 );
