@@ -335,7 +335,7 @@ $server->start(
                     ],
                     [
                         (string) date('c'),
-                        (string) (int) !empty($response),
+                        (string) (int) is_string($response),
                         (string) parse_url($url, PHP_URL_HOST),
                         (string) parse_url($url, PHP_URL_PORT),
                         (string) str_replace('%', '%%', empty($request)  ? '/' : $request),
