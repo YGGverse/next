@@ -192,11 +192,12 @@ $server->start(
 
         // Build realpath
         $realpath = realpath(
-            NEXT_PATH . filter_var(
-                urldecode(
-                    $request
-                ),
-                FILTER_SANITIZE_URL
+            NEXT_PATH .
+            urldecode(
+                filter_var(
+                    $request,
+                    FILTER_SANITIZE_URL
+                )
             )
         );
 
