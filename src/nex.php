@@ -216,8 +216,11 @@ $server->start(
                 // Try index file on enabled
                 if (NEXT_FILE && file_exists($realpath . NEXT_FILE) && is_readable($realpath . NEXT_FILE))
                 {
+                    // Update realpath returned on default file response
+                    $realpath = $realpath . NEXT_FILE;
+
                     $response = file_get_contents(
-                        $realpath . NEXT_FILE
+                        $realpath
                     );
                 }
 
