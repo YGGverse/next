@@ -187,6 +187,8 @@ $server->start(
             $request
         );
 
+        $request = empty($request) ? '/' : $request;
+
         // Build realpath
         $realpath = realpath(
             NEXT_PATH .
@@ -338,7 +340,7 @@ $server->start(
                         (string) (int) is_string($response),
                         (string) parse_url($url, PHP_URL_HOST),
                         (string) parse_url($url, PHP_URL_PORT),
-                        (string) str_replace('%', '%%', empty($request)  ? '/' : $request),
+                        (string) str_replace('%', '%%', $request),
                         (string) str_replace('%', '%%', empty($realpath) ? '!' : $realpath),
                         (string) mb_strlen((string) $response)
                     ],
