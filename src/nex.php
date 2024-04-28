@@ -320,6 +320,7 @@ $server->start(
                 $connect
             );
 
+            // Print dump from template
             printf(
                 str_ireplace(
                     [
