@@ -338,8 +338,8 @@ $server->start(
                         (string) (int) is_string($response),
                         (string) parse_url($url, PHP_URL_HOST),
                         (string) parse_url($url, PHP_URL_PORT),
-                        (string) empty($request) ? '/' : str_replace('%', '%%', $request),
-                        (string) (!$realpath || !is_string($response) ? '!' : '') . str_replace('%', '%%', $realpath),
+                        (string) str_replace('%', '%%', empty($request)  ? '/' : $request),
+                        (string) str_replace('%', '%%', empty($realpath) ? '!' : $realpath),
                         (string) mb_strlen((string) $response)
                     ],
                     NEXT_DUMP
