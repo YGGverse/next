@@ -74,10 +74,7 @@ foreach ((array) $argv as $item)
 
             case 'fail':
 
-                $fail = rtrim(
-                    (string) $argument['value'],
-                    DIRECTORY_SEPARATOR
-                ) . DIRECTORY_SEPARATOR;
+                $fail = (string) $argument['value'];
 
                 if (!str_starts_with($fail, DIRECTORY_SEPARATOR))
                 {
