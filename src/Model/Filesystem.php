@@ -219,6 +219,11 @@ class Filesystem
             return null;
         }
 
+        if (!$this->valid($realpath))
+        {
+            return null;
+        }
+
         return $realpath;
     }
 
