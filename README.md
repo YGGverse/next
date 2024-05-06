@@ -39,7 +39,7 @@ Startup example:
 php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 ```
 
-* `host` and `port` - optional arguments, read [arguments documentation](#arguments) for details!
+* `host` and `port` - optional arguments, read [Arguments documentation](#arguments) for details!
 
 #### Arguments
 
