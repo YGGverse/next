@@ -90,65 +90,61 @@ class Nex implements MessageComponentInterface
             $request
         );
 
-        // Make sure realpath valid to continue
-        if ($this->_filesystem->valid($realpath))
+        // Route
+        switch (true)
         {
-            // Route
-            switch (true)
-            {
-                // File request
-                case $file = $this->_filesystem->file($realpath):
+            // File request
+            case $file = $this->_filesystem->file($realpath):
 
-                    // Return file content
-                    $response = $file;
+                // Return file content
+                $response = $file;
 
-                break;
+            break;
 
-                // Directory request
-                case $list = $this->_filesystem->list($realpath):
+            // Directory request
+            case $list = $this->_filesystem->list($realpath):
 
-                    // Try index file on defined
-                    if ($index = $this->_filesystem->file($realpath . $this->_environment->get('file')))
+                // Try index file on defined
+                if ($index = $this->_filesystem->file($realpath . $this->_environment->get('file')))
+                {
+                    // Return index file content
+                    $response = $index;
+                }
+
+                // Listing enabled
+                else if ($this->_environment->get('list'))
+                {
+                    // FS map
+                    $line = [];
+
+                    foreach ($list as $item)
                     {
-                        // Return index file content
-                        $response = $index;
-                    }
+                        // Build gemini text link
+                        $link = ['=>'];
 
-                    // Listing enabled
-                    else if ($this->_environment->get('list'))
-                    {
-                        // FS map
-                        $line = [];
-
-                        foreach ($list as $item)
+                        if ($item['name'])
                         {
-                            // Build gemini text link
-                            $link = ['=>'];
-
-                            if ($item['name'])
-                            {
-                                $link[] = $item['file'] ? $item['name']
-                                                        : $item['name'] . '/';
-                            }
-
-                            if ($item['time'] && $this->_environment->get('time'))
-                            {
-                                $link[] = date('Y-m-d', $item['time']);
-                            }
-
-                            // Append link to the new line
-                            $line[] = implode(' ', $link);
+                            $link[] = $item['file'] ? $item['name']
+                                                    : $item['name'] . '/';
                         }
 
-                        // Merge lines to response
-                        $response = implode(
-                            PHP_EOL,
-                            $line
-                        );
+                        if ($item['time'] && $this->_environment->get('time'))
+                        {
+                            $link[] = date('Y-m-d', $item['time']);
+                        }
+
+                        // Append link to the new line
+                        $line[] = implode(' ', $link);
                     }
 
-                break;
-            }
+                    // Merge lines to response
+                    $response = implode(
+                        PHP_EOL,
+                        $line
+                    );
+                }
+
+            break;
         }
 
         // Dump event
