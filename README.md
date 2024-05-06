@@ -1,6 +1,6 @@
 # next
 
-PHP 8 server for different protocols
+PHP 8 server for smallweb protocols
 
 Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket library
 
