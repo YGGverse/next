@@ -42,6 +42,14 @@ class Filesystem
             );
         }
 
+        // Root is readable
+        if (!is_readable($realpath))
+        {
+            throw new \Exception(
+                _('root path is not readable!')
+            );
+        }
+
         // Check root path does not contain hidden context
         if (str_contains($realpath, DIRECTORY_SEPARATOR . '.'))
         {
@@ -236,11 +244,6 @@ class Filesystem
         }
 
         if (!$realpath = realpath($path))
-        {
-            return null;
-        }
-
-        if (!is_readable($realpath))
         {
             return null;
         }
