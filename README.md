@@ -12,9 +12,9 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
   * [ ] [Gemini](https://geminiprotocol.net)
 * Multi-mode:
- * [x] Static filesystem
- * [ ] Dynamic application
- * [ ] Reverse proxy
+  * [x] Static filesystem
+  * [ ] Dynamic application
+  * [ ] Reverse proxy
 * Connection event log
 * Optional:
   * file navigation on directory request
