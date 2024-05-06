@@ -11,7 +11,7 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 * Multi-protocol:
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
   * [ ] [Gemini](https://geminiprotocol.net)
-* Event logs
+* Connection event log
 * Optional:
   * file navigation on directory request
   * custom index name
