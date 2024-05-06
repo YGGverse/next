@@ -43,6 +43,10 @@ php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 
 #### Arguments
 
+Default argument values depending of server protocol selected.
+
+Some arguments also defined in [default.json](https://github.com/YGGverse/next/blob/main/default.json) file. Do not change it without understanding!
+
 ##### Required
 
 * `type` - server protocol, also auto-defines default `port`, supported options:
@@ -57,7 +61,7 @@ php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 * `list` - show content listing in the requested directory (when index `file` not found), enabled by default
 * `time` - show file modification time as the alt text in directory listing (useful for gemfeed), disabled by default
 * `fail` - **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
-* `dump` - `enable` or `disable` query log, `enable` by default
+* `dump` - `enable` or `disable` server debug feature, enabled by default
 
 ### Autostart
 
