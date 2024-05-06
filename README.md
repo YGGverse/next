@@ -1,60 +1,71 @@
 # next
 
-PHP 8 Server for [NEX Protocol](https://nightfall.city/nex/info/specification.txt), based on the [nex-php](https://github.com/YGGverse/nex-php) library
+PHP 8 server for different protocols, based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket library.
+
+## Features
+
+* Asynchronous connections
+* Multi-host
+* Multiple protocols:
+  * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
+  * [ ] [Gemini](https://geminiprotocol.net)
+* Detailed event log
+* Optional:
+  * directory listing navigation with safe filesystem access
+  * custom index file names
+  * custom failure page
+* Flexible server configuration by environment arguments
 
 ## Install
 
 * `git clone https://github.com/YGGverse/next.git`
-* `cd next` - navigate into the server directory
+* `cd next` - navigate into the project directory
 * `composer update` - grab latest dependencies
 
-## NEX
-
-Optimal to serve static files
-
-For security reasons, `next` server prevents any access to the hidden files (started with dot)
+## Launch
 
 ### Start
 
-Create as many servers as wanted by providing different `host` and `port` using optional arguments
+Create as many servers as wanted by providing different `type`, `host`, `port` and other arguments.
+
+* for security reasons, `next` server prevents any access to the hidden files (started with dot).\
+* also, clients can't access any data out the `root` path, defined on server startup
+
+Simple example:
 
 ``` bash
-php src/nex.php host=127.0.0.1 port=1900 path=/target/dir
+php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 ```
+
+* `host` and `port` is optional, read [arguments documentation](#arguments) for details!
 
 #### Arguments
 
 ##### Required
 
-* `path` - **absolute path** to the public directory
+* `type` - server protocol, supported options:
+  * `nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
+* `root` - **absolute path** to the public directory
 
 ##### Optional
 
 * `host` - `127.0.0.1` by default
-* `port` - `1900` by default
-* `file` - index **filename** that server try to open on directory path requested, disabled by default
-* `list` - show content listing in the requested directory (when index file not found), `yes` by default
-* `fail` - **filepath** that contain failure text or template (e.g. `error.gmi`), `fail` text by default
-* `size` - limit request length in bytes, `1024` by default
-* `dump` - query log, blank to disable, default: `[{time}] [{code}] {host}:{port} {path} {real} {size} bytes`
-  * `{time}` - event time in `c` format
-  * `{code}` - formal response code: `1` - found, `0` - not found
-  * `{host}` - peer host
-  * `{port}` - peer port
-  * `{path}` - path requested
-  * `{real}` - **realpath** returned
-  * `{size}` - response size in bytes
+* `port` - depends of server `type` by default
+* `file` - index **file name** that server try to open on directory path requested, disabled by default
+* `list` - show content listing in the requested directory (when index file not found), enabled by default
+* `time` - show file modification time as the alt text in directory listing, disabled by default
+* `fail` - **absolute path** to the failure template file (e.g. `/path/to/error.gmi`), disabled by default
+* `dump` - query log, enabled by default
 
 ### Autostart
 
-Launch server as the `systemd` service
+#### systemd
 
 Following example mean you have `next` server installed into home directory of `next` user (`useradd -m next`)
 
-1. `mkdir /home/next/public` - make sure you have created public folder
-2. `sudo nano /etc/systemd/system/next.service` - create new service:
-
 ``` next.service
+# /etc/systemd/system/next.service
+
 [Unit]
 After=network.target
 
@@ -62,7 +73,7 @@ After=network.target
 Type=simple
 User=next
 Group=next
-ExecStart=/usr/bin/php /home/next/next/src/nex.php path=/home/next/public
+ExecStart=/usr/bin/php /home/next/next/src/server.php type=nex root=/home/next/public
 StandardOutput=file:/home/next/debug.log
 StandardError=file:/home/next/error.log
 Restart=on-failure
@@ -71,6 +82,6 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-3. `sudo systemctl daemon-reload` - reload systemd configuration
-4. `sudo systemctl enable next` - enable `next` service on system startup
-5. `sudo systemctl start next` - start `next` server
+* `systemctl daemon-reload` - reload systemd configuration
+* `systemctl enable next` - enable service on system startup
+* `systemctl start next` - start server
