@@ -45,15 +45,19 @@ php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 
 Default argument values depending of server protocol selected.
 
-Some arguments also defined in [default.json](https://github.com/YGGverse/next/blob/main/default.json) file. Do not change this file without understanding, use CLI instead!
+Some arguments also defined in [default.json](https://github.com/YGGverse/next/blob/main/default.json) file. Do not change this file without understanding, use [CLI](#cli) instead!
 
-##### Required
+##### CLI
+
+Provide wanted arguments separated by space, in `key=value` format
+
+###### Required
 
 * `type` - server protocol, also auto-defines default `port`, supported options:
   * `nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
 * `root` - **absolute path** to the public directory, where browser navigation starting from
 
-##### Optional
+###### Optional
 
 * `host` - default is `127.0.0.1` e.g. `localhost` connections only
 * `port` - default value depends of server `type` selected, for example `1900` for `nex` or `1965` for `gemini`
