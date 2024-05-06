@@ -16,7 +16,7 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
   * directory listing navigation with safe filesystem access
   * custom index file names
   * custom failure page
-* Flexible server configuration by environment arguments
+* Simple and flexible server configuration by CLI arguments
 
 ## Install
 
