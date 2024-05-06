@@ -135,7 +135,7 @@ class Nex implements MessageComponentInterface
                             ];
 
                             // Append modification time on enabled
-                            if ($item['time'] && $this->_environment->get('time'))
+                            if ($item['time'] && $this->_environment->get('date'))
                             {
                                 $link[] = date(
                                     'Y-m-d', // gemfeed format

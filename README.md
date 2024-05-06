@@ -75,7 +75,7 @@ Provide arguments in `key=value` format, separated by space
 * `port` - default value depends of server `type` selected, for example `1900` for `nex` or `1965` for `gemini`
 * `file` - index **file name** that server try to open on directory path requested, disabled by default
 * `list` - show content listing in the requested directory (when index `file` not found), enabled by default
-* `time` - show file modification time as the alt text in directory listing (useful for gemfeed), disabled by default
+* `date` - show file modification date as the alt text in directory listing (useful for gemfeed), disabled by default
 * `fail` - **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
 * `dump` - `enable` or `disable` server debug feature, enabled by default
 
