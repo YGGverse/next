@@ -82,7 +82,10 @@ class Nex implements MessageComponentInterface
 
         // Filter request
         $request = trim(
-            $request
+            filter_var(
+                $request,
+                FILTER_SANITIZE_URL
+            )
         );
 
         // Build absolute realpath
@@ -165,16 +168,8 @@ class Nex implements MessageComponentInterface
                         (string) date('c'),
                         (string) $connection->remoteAddress,
                         (string) $connection->resourceId,
-                        (string) str_replace(
-                            '%',
-                            '%%',
-                            $request
-                        ),
-                        (string) str_replace(
-                            '%',
-                            '%%',
-                            $realpath
-                        ),
+                        (string) $request,
+                        (string) $realpath,
                         (string) mb_strlen(
                             $response
                         )
