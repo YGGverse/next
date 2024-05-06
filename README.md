@@ -2,11 +2,11 @@
 
 PHP 8 server for different protocols
 
-Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket library.
+Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket library
 
 ## Features
 
-* Asynchronous connections
+* Async connections
 * Multi-host
 * Multi-protocol:
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
