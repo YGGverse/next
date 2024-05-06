@@ -31,11 +31,26 @@ try
     {
         case 'nex':
 
+            switch ($environment->get('mode'))
+            {
+                case 'fs':
+
+                    $controller = new \Yggverse\Next\Controller\Nex\Filesystem(
+                        $environment,
+                        $filesystem
+                    );
+
+                break;
+
+                default:
+
+                    throw new \Exception(
+                        _('unsupported mode for nex server type!')
+                    );
+            }
+
             $server = \Ratchet\Server\IoServer::factory(
-                new \Yggverse\Next\Controller\Nex(
-                    $environment,
-                    $filesystem
-                ),
+                $controller,
                 $environment->get('port'),
                 $environment->get('host')
             );
@@ -56,4 +71,7 @@ try
 catch (\Exception $exception)
 {
     // @TODO
+    print(
+        $exception->getMessage()
+    ) . PHP_EOL;
 }

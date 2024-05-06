@@ -11,6 +11,10 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 * Multi-protocol:
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
   * [ ] [Gemini](https://geminiprotocol.net)
+* Multi-mode:
+ * [x] Static filesystem
+ * [ ] Dynamic application
+ * [ ] Reverse proxy
 * Connection event log
 * Optional:
   * file navigation on directory request
@@ -71,6 +75,8 @@ Provide arguments in `key=value` format, separated by space
 
 ###### Optional
 
+* `mode` - server implementation variant, `fs` (filesystem) by default
+  * `fs` - static files hosting for the `root` location
 * `host` - default is `127.0.0.1` e.g. `localhost` connections only
 * `port` - default value depends of server `type` selected, for example `1900` for `nex` or `1965` for `gemini`
 * `file` - index **file name** that server try to open on directory path requested, disabled by default

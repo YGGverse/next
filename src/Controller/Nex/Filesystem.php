@@ -1,10 +1,10 @@
 <?php
 
-namespace Yggverse\Next\Controller;
+namespace Yggverse\Next\Controller\Nex;
 
 use \Ratchet\MessageComponentInterface;
 
-class Nex implements MessageComponentInterface
+class Filesystem implements MessageComponentInterface
 {
     private \Yggverse\Next\Model\Environment $_environment;
     private \Yggverse\Next\Model\Filesystem $_filesystem;
@@ -43,7 +43,7 @@ class Nex implements MessageComponentInterface
                         (string) $this->_environment->get('port'),
                         (string) $this->_filesystem->root()
                     ],
-                    _('[{time}] [init] server started at {host}:{port}{root}')
+                    _('[{time}] [init] filesystem server started at nex://{host}:{port}{root}')
                 ) . PHP_EOL
             );
         }
