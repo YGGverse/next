@@ -39,25 +39,25 @@ Startup example:
 php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 ```
 
-* `host` and `port` is optional, read [arguments documentation](#arguments) for details!
+* `host` and `port` - optional arguments, read [arguments documentation](#arguments) for details!
 
 #### Arguments
 
 ##### Required
 
-* `type` - server protocol, supported options:
+* `type` - server protocol, usually auto-define default `port`, available protocols:
   * `nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
-* `root` - **absolute path** to the public directory
+* `root` - **absolute path** to the public directory, where browser navigation starting from
 
 ##### Optional
 
-* `host` - `127.0.0.1` by default
-* `port` - depends of server `type` by default
+* `host` - default is `127.0.0.1` e.g. `localhost` connections only
+* `port` - default value depends of server `type` selected, for example `1900` for `nex` or `1965` for `gemini`
 * `file` - index **file name** that server try to open on directory path requested, disabled by default
-* `list` - show content listing in the requested directory (when index file not found), enabled by default
+* `list` - show content listing in the requested directory (when index `file` not found), enabled by default
 * `time` - show file modification time as the alt text in directory listing, disabled by default
 * `fail` - **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
-* `dump` - query log, enabled by default
+* `dump` - `enable` or `disable` query log, `enable` by default
 
 ### Autostart
 
