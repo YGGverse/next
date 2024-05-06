@@ -33,7 +33,7 @@ Create as many servers as wanted by providing different `type`, `host`, `port` a
 * for security reasons, `next` server prevents any access to the hidden files (started with dot)
 * also, clients can't access any data out the `root` path, that defined on server startup
 
-Simple example:
+Startup example:
 
 ``` bash
 php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
