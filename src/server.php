@@ -21,7 +21,7 @@ $environment = new \Yggverse\Next\Model\Environment(
 
 // Init filesystem
 $filesystem = new \Yggverse\Next\Model\Filesystem(
-    $environment->get('path')
+    $environment->get('root')
 );
 
 // Start server
