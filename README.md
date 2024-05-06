@@ -6,16 +6,16 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 
 ## Features
 
-* Async connections
+* Async listener
 * Multi-host
 * Multi-protocol:
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
   * [ ] [Gemini](https://geminiprotocol.net)
-* Event log
+* Event logs
 * Optional:
-  * directory listing navigation with safe filesystem access
-  * custom index file names
-  * custom failure page
+  * file navigation on directory request
+  * custom index name
+  * custom failure template
 * Simple and flexible server configuration by CLI arguments
 
 ## Install
