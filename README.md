@@ -33,7 +33,7 @@ Create as many servers as wanted by providing different `type`, `host`, `port` a
 * for security reasons, `next` server prevents any access to the hidden files (started with dot)
 * also, clients can't access any data out the `root` path, that defined on server startup
 
-Startup example:
+#### Startup example
 
 ``` bash
 php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
@@ -45,11 +45,11 @@ php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 
 Default argument values depending of server protocol selected.
 
-Some arguments also defined in [default.json](https://github.com/YGGverse/next/blob/main/default.json) file - do not change it without understanding, use [CLI](#cli) instead!
+Some arguments also defined in [default.json](https://github.com/YGGverse/next/blob/main/default.json) - do not change it without understanding, use [CLI](#cli) instead!
 
 ##### CLI
 
-Provide arguments wanted in `key=value` format, separated by space
+Provide arguments in `key=value` format, separated by space
 
 ###### Required
 
