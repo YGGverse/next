@@ -20,8 +20,19 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 
 ## Install
 
-* `apt install git composer php-fpm php-mbstring` - install system dependencies
-* `git clone https://github.com/YGGverse/next.git` - get latest server version
+### Environment
+
+``` bash
+apt install git composer php-fpm php-mbstring
+```
+
+### Stable
+
+Project under development, use [repository](#repository) version!
+
+### Repository
+
+* `git clone https://github.com/YGGverse/next.git`
 * `cd next` - navigate into the project directory
 * `composer update` - grab latest dependencies
 
