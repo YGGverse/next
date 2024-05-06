@@ -13,13 +13,13 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
   * [ ] [Gemini](https://geminiprotocol.net)
 * Multi-mode:
   * [x] Static filesystem hosting
+      * [x] file navigation on directory request
+      * [x] custom index name
+      * [x] custom failure template
+      * [x] custom data location
   * [ ] Dynamic application
   * [ ] Reverse proxy
 * Connection event log
-* Optional:
-  * file navigation on directory request
-  * custom index name
-  * custom failure template
 * Simple and flexible server configuration by CLI arguments
 
 ## Install
