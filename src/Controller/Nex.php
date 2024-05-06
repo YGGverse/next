@@ -82,9 +82,11 @@ class Nex implements MessageComponentInterface
 
         // Filter request
         $request = trim(
-            filter_var(
-                $request,
-                FILTER_SANITIZE_URL
+            urldecode(
+                filter_var(
+                    $request,
+                    FILTER_SANITIZE_URL
+                )
             )
         );
 
