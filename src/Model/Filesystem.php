@@ -135,8 +135,11 @@ class Filesystem
                     $directories[] =
                     [
                         'file' => false,
-                        'name' => $name,
                         'path' => $path,
+                        'name' => $name,
+                        'link' => urlencode(
+                            $name
+                        ),
                         'time' => filemtime(
                             $path
                         )
@@ -149,8 +152,11 @@ class Filesystem
                     $files[] =
                     [
                         'file' => true,
-                        'name' => $name,
                         'path' => $path,
+                        'name' => $name,
+                        'link' => urlencode(
+                            $name
+                        ),
                         'time' => filemtime(
                             $path
                         )

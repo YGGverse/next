@@ -125,21 +125,36 @@ class Nex implements MessageComponentInterface
                     foreach ($list as $item)
                     {
                         // Build gemini text link
-                        $link = ['=>'];
-
-                        if ($item['name'])
+                        if ($item['link'])
                         {
-                            $link[] = $item['file'] ? $item['name']
-                                                    : $item['name'] . '/';
-                        }
+                            $link =
+                            [
+                                '=>', // gemtext format
+                                $item['file'] ? $item['link']
+                                              : $item['link'] . '/'
+                            ];
 
-                        if ($item['time'] && $this->_environment->get('time'))
-                        {
-                            $link[] = date('Y-m-d', $item['time']);
-                        }
+                            // Append modification time on enabled
+                            if ($item['time'] && $this->_environment->get('time'))
+                            {
+                                $link[] = date(
+                                    'Y-m-d', // gemfeed format
+                                    $item['time']
+                                );
+                            }
 
-                        // Append link to the new line
-                        $line[] = implode(' ', $link);
+                            // Append alt name on link urlencoded
+                            if ($item['name'] != $item['link'])
+                            {
+                                $link[] = $item['name'];
+                            }
+
+                            // Append link to the new line
+                            $line[] = implode(
+                                ' ',
+                                $link
+                            );
+                        }
                     }
 
                     // Merge lines to response
