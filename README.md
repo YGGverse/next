@@ -12,10 +12,11 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
   * [ ] [Gemini](https://geminiprotocol.net)
 * Multi-mode:
-  * [x] Static filesystem hosting
+  * [x] Static file hosting
       * [x] file navigation on directory request
         * [x] optional `gemfeed` file modification date
         * [x] unicode filenames support
+        * [x] filter hidden context (started with dot)
         * [ ] sort order settings (currently dir first, asc)
       * [x] custom index file name
       * [x] custom failure template
