@@ -20,7 +20,8 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 
 ## Install
 
-* `git clone https://github.com/YGGverse/next.git`
+* `apt install git composer php-fpm php-mbstring` - install system dependencies
+* `git clone https://github.com/YGGverse/next.git` - get latest server version
 * `cd next` - navigate into the project directory
 * `composer update` - grab latest dependencies
 
@@ -30,7 +31,7 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 
 Create as many servers as wanted by providing different `type`, `host`, `port` and other arguments!
 
-* for security reasons, `next` server prevents any access to the hidden files (started with dot)
+* for security reasons, server prevents any access to the hidden files (started with dot)
 * also, clients can't access any data out the `root` path, that defined on server startup
 
 #### Startup example
