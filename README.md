@@ -6,7 +6,7 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 
 ## Features
 
-* Async listener
+* Async socket
 * Multi-host
 * Multi-protocol:
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
