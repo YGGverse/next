@@ -49,7 +49,7 @@ Some arguments also defined in [default.json](https://github.com/YGGverse/next/b
 
 ##### CLI
 
-Provide wanted arguments separated by space, in `key=value` format
+Provide arguments wanted in `key=value` format, separated by space
 
 ###### Required
 
