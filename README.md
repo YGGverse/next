@@ -1,15 +1,17 @@
 # next
 
-PHP 8 server for different protocols, based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket library.
+PHP 8 server for different protocols
+
+Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket library.
 
 ## Features
 
 * Asynchronous connections
 * Multi-host
-* Multiple protocols:
+* Multi-protocol:
   * [x] [NEX](https://nightfall.city/nex/info/specification.txt)
   * [ ] [Gemini](https://geminiprotocol.net)
-* Detailed event log
+* Event log
 * Optional:
   * directory listing navigation with safe filesystem access
   * custom index file names
@@ -26,10 +28,10 @@ PHP 8 server for different protocols, based on [Ratchet](https://github.com/ratc
 
 ### Start
 
-Create as many servers as wanted by providing different `type`, `host`, `port` and other arguments.
+Create as many servers as wanted by providing different `type`, `host`, `port` and other arguments!
 
-* for security reasons, `next` server prevents any access to the hidden files (started with dot).\
-* also, clients can't access any data out the `root` path, defined on server startup
+* for security reasons, `next` server prevents any access to the hidden files (started with dot)
+* also, clients can't access any data out the `root` path, that defined on server startup
 
 Simple example:
 
@@ -54,7 +56,7 @@ php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
 * `file` - index **file name** that server try to open on directory path requested, disabled by default
 * `list` - show content listing in the requested directory (when index file not found), enabled by default
 * `time` - show file modification time as the alt text in directory listing, disabled by default
-* `fail` - **absolute path** to the failure template file (e.g. `/path/to/error.gmi`), disabled by default
+* `fail` - **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
 * `dump` - query log, enabled by default
 
 ### Autostart
