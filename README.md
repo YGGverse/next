@@ -13,7 +13,7 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
   * [ ] [Gemini](https://geminiprotocol.net)
 * Multi-mode:
   * [x] Static file hosting
-      * [x] filesystem navigation on directory request
+      * [x] optional filesystem navigation on directory request
         * [x] optional `gemfeed` file modification date
         * [x] unicode filenames support
         * [x] filter hidden context (started with dot)
