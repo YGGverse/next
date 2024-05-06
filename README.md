@@ -14,9 +14,12 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 * Multi-mode:
   * [x] Static filesystem hosting
       * [x] file navigation on directory request
-      * [x] custom index name
+        * [x] optional `gemfeed` file modification date
+        * [x] unicode filenames support
+        * [ ] sort order settings (currently dir first, asc)
+      * [x] custom index file name
       * [x] custom failure template
-      * [x] custom data location
+      * [x] custom data directory location
   * [ ] Dynamic application
   * [ ] Reverse proxy
 * Connection event log
