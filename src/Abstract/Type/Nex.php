@@ -29,7 +29,7 @@ abstract class Nex implements MessageComponentInterface
                         (string) $environment->get('host'),
                         (string) $environment->get('port')
                     ],
-                    _('[{time}] [construct] server {host}:{port}')
+                    _('[{time}] [construct] nex server {host}:{port}')
                 ) . PHP_EOL
             );
         }
