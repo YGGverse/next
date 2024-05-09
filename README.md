@@ -78,9 +78,9 @@ Children nodes dependent of parent arguments defined and would be skipped in oth
 Following list explains `key` dependencies and it `value` options (started with `=`)
 
 * `type` - required, server protocol, also auto-defines default `port`, supported options:
-  * =`nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
+  * = `nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
     * `mode` - optional, server implementation variant, `fs` (filesystem) by default
-      * =`fs` - static files hosting for the `root` location
+      * = `fs` - static files hosting for the `root` location
         * `root` - **absolute path** to the public directory, where browser navigation starting from
         * `file` - **file name** that server try to open on directory path requested, disabled by default
         * `list` - show listing in directory requested (on index `file` not found), enabled by default
