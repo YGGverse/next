@@ -21,8 +21,10 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
       * [x] custom index file name
       * [x] custom failure template
       * [x] custom data directory location
+  * [ ] KevaCoin file storage
   * [ ] Dynamic application
   * [ ] Reverse proxy
+  * [ ] Stream server
 * Connection event log
 * Simple and flexible server configuration by CLI arguments
 
@@ -48,15 +50,15 @@ Project under development, use [repository](#repository) version!
 
 ### Start
 
-Create as many servers as wanted by providing different `type`, `host`, `port` and other arguments!
+Create as many servers as wanted by providing different `type`, `host`, `port`, `type`, `mode` and other arguments!
 
-* for security reasons, server prevents any access to the hidden files (started with dot)
+* for security reasons, file server prevents any access to the hidden files (started with dot)
 * also, clients can't access any data out the `root` path, that defined on server startup
 
 #### Startup example
 
 ``` bash
-php src/server.php type=nex host=127.0.0.1 port=1900 root=/target/dir
+php src/server.php host=127.0.0.1 port=1900 type=nex mode=fs root=/target/dir
 ```
 
 * `host` and `port` - optional arguments, read [Arguments documentation](#arguments) for details!
@@ -71,23 +73,22 @@ Some arguments also defined in [default.json](https://github.com/YGGverse/next/b
 
 Provide arguments in `key=value` format, separated by space
 
-###### Required
+Children nodes dependent of parent arguments defined and would be skipped in other combinations!
 
-* `type` - server protocol, also auto-defines default `port`, supported options:
-  * `nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
-* `root` - **absolute path** to the public directory, where browser navigation starting from
+Following list explains `key` dependencies and it `value` options (started with `=`)
 
-###### Optional
-
-* `mode` - server implementation variant, `fs` (filesystem) by default
-  * `fs` - static files hosting for the `root` location
-* `host` - default is `127.0.0.1` e.g. `localhost` connections only
-* `port` - default value depends of server `type` selected, for example `1900` for `nex` or `1965` for `gemini`
-* `file` - index **file name** that server try to open on directory path requested, disabled by default
-* `list` - show content listing in the requested directory (when index `file` not found), enabled by default
-* `date` - show file modification date as the alt text in directory listing (useful for gemfeed), disabled by default
+* `host` - optional, default is `127.0.0.1` e.g. `localhost` connections only
+* `port` - optional, default value depends of server `type` selected, for example `1900` for `nex` or `1965` for `gemini`
 * `fail` - **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
 * `dump` - `enable` or `disable` server debug feature, enabled by default
+* `type` - required, server protocol, also auto-defines default `port`, supported options:
+  * =`nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
+    * `mode` - server implementation variant, `fs` (filesystem) by default
+      * =`fs` - static files hosting for the `root` location
+        * `root` - **absolute path** to the public directory, where browser navigation starting from
+        * `file` - index **file name** that server try to open on directory path requested, disabled by default
+        * `list` - show content listing in the requested directory (when index `file` not found), enabled by default
+        * `date` - show file modification date as the alt text in directory listing (useful for gemfeed), disabled by default
 
 ### Autostart
 
