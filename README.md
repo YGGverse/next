@@ -91,7 +91,7 @@ Following list explains `key` dependencies and it `value` options (started with 
         * `rpchost` - required, remote or `localhost`
         * `rpcuser` - required
         * `rpcpassword` - required
-        * `namespace` - required, namespace identifier for data listing (started with `N`)
+        * `namespace` - required, remote or local namespace for data listing (started with `N`)
 * `host` - optional, default is `127.0.0.1` e.g. `localhost` connections only
 * `port` - optional, default value depends of server `type` selected e.g. `1900` for `nex` or `1965` for `gemini`
 * `fail` - optional, **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
