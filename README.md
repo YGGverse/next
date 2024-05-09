@@ -77,16 +77,16 @@ Children nodes dependent of parent arguments defined and would be skipped in oth
 
 Following list explains `key` dependencies and it `value` options (started with `=`)
 
-* `host` - optional, default is `127.0.0.1` e.g. `localhost` connections only
-* `port` - optional, default value depends of server `type` selected e.g. `1900` for `nex` or `1965` for `gemini`
 * `type` - required, server protocol, also auto-defines default `port`, supported options:
   * =`nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
-    * `mode` - server implementation variant, `fs` (filesystem) by default
+    * `mode` - optional, server implementation variant, `fs` (filesystem) by default
       * =`fs` - static files hosting for the `root` location
         * `root` - **absolute path** to the public directory, where browser navigation starting from
         * `file` - **file name** that server try to open on directory path requested, disabled by default
         * `list` - show listing in directory requested (on index `file` not found), enabled by default
         * `date` - show file modification date (as gemfeed) in directory listing, disabled by default
+* `host` - optional, default is `127.0.0.1` e.g. `localhost` connections only
+* `port` - optional, default value depends of server `type` selected e.g. `1900` for `nex` or `1965` for `gemini`
 * `fail` - optional, **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
 * `dump` - optional, `enable` or `disable` server debug feature, enabled by default
 
