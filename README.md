@@ -65,7 +65,7 @@ php src/server.php host=127.0.0.1 port=1900 type=nex mode=fs root=/target/dir
 
 #### Arguments
 
-Default argument values are depending of server protocol selected
+Optional arguments auto-defined by server protocol `type` selected
 
 Some arguments also defined in [default.json](https://github.com/YGGverse/next/blob/main/default.json) - do not change it without understanding, use [CLI](#cli) instead!
 
