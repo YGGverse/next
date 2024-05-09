@@ -18,21 +18,32 @@ class Kevacoin
         int    $port,
         string $namespace
     ) {
-        // Connect wallet
+        // Init wallet connection
         $this->_client = new \Kevachat\Kevacoin\Client(
             $scheme,
             $host,
             $port,
-            $username,
+            $user,
             $password
         );
 
+        // Check connection using balance request
+        if (!is_float($this->_client->getBalance()))
+        {
+            throw new \Exception(
+                _('could not connect kevacoin wallet!')
+            );
+        }
+
         // Check namespace given exists
-        if (!$this->_namespace = $this->_client->kevaFilter($namespace))
+        if (is_null($this->_client->kevaFilter($namespace, '', 0, 0, 1)))
         {
             throw new \Exception(
                 _('could not find requested namespace!')
             );
         }
+
+        // Init namespace
+        $this->_namespace = $namespace;
     }
 }
