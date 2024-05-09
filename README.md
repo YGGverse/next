@@ -88,7 +88,7 @@ Following list explains `key` dependencies and it `value` options (started with 
         * `root` - **absolute path** to the public directory, where browser navigation starting from
         * `file` - **file name** that server try to open on directory path requested, disabled by default
         * `list` - show listing in directory requested (on index `file` not found), enabled by default
-        * `date` - show file modification date as the alt text in directory listing (useful for gemfeed), disabled by default
+        * `date` - show file modification date (as gemfeed) in directory listing, disabled by default
 
 ### Autostart
 
