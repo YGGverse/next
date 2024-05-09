@@ -85,6 +85,13 @@ Following list explains `key` dependencies and it `value` options (started with 
         * `file` - **file name** that server try to open on directory path requested, disabled by default
         * `list` - show listing in directory requested (on index `file` not found), enabled by default
         * `date` - show file modification date (as gemfeed) in directory listing, disabled by default
+      * = `kevacoin` - [KevaCoin](https://github.com/kevacoin-project) storage browser trough RPC connection to wallet (defined in `~./kevacoin/kevacoin.conf`)
+        * `rpcscheme` - required, for example `http`
+        * `rpcport` - required, default is `9992`
+        * `rpchost` - required, remote or `localhost`
+        * `rpcuser` - required
+        * `rpcpassword` - required
+        * `namespace` - required, namespace identifier for data listing (started with `N`)
 * `host` - optional, default is `127.0.0.1` e.g. `localhost` connections only
 * `port` - optional, default value depends of server `type` selected e.g. `1900` for `nex` or `1965` for `gemini`
 * `fail` - optional, **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
