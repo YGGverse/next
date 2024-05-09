@@ -36,7 +36,7 @@ try
 
                 break;
 
-                case 'keva':
+                case 'kevacoin':
 
                     $controller = new \Yggverse\Next\Controller\Nex\Kevacoin(
                         $environment
