@@ -36,6 +36,8 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
 apt install git composer php-fpm php-mbstring
 ```
 
+* for `kevacoin` server `mode`, also required `php-curl` extension
+
 ### Stable
 
 Project under development, use [repository](#repository) version!
