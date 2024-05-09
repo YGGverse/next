@@ -2,29 +2,24 @@
 
 namespace Yggverse\Next\Controller\Nex;
 
-use \Ratchet\MessageComponentInterface;
-
-class Filesystem implements MessageComponentInterface
+class Filesystem extends \Yggverse\Next\Abstract\Type\Nex
 {
-    private \Yggverse\Next\Model\Environment $_environment;
     private \Yggverse\Next\Model\Filesystem $_filesystem;
 
-    public function __construct(
-        \Yggverse\Next\Model\Environment $environment,
-        \Yggverse\Next\Model\Filesystem $filesystem
-    ) {
-        // Init environment
-        $this->_environment = $environment;
+    public function init()
+    {
+        // Validate environment arguments defined for this type
+        if (!$this->_environment->get('root'))
+        {
+            throw new \Exception(
+                _('filesystem root path required!')
+            );
+        }
 
         // Init filesystem
-        $this->_filesystem = $filesystem;
-
-        // Check port is defined
-        if (!$this->_environment->get('port'))
-        {
-            // Set protocol defaults
-            $this->_environment->set('port', 1900);
-        }
+        $this->_filesystem = new \Yggverse\Next\Model\Filesystem(
+            $this->_environment->get('root')
+        );
 
         // Dump event
         if ($this->_environment->get('dump'))
@@ -44,30 +39,6 @@ class Filesystem implements MessageComponentInterface
                         (string) $this->_filesystem->root()
                     ],
                     _('[{time}] [init] filesystem server started at nex://{host}:{port}{root}')
-                ) . PHP_EOL
-            );
-        }
-    }
-
-    public function onOpen(
-        \Ratchet\ConnectionInterface $connection
-    ) {
-        // Dump event
-        if ($this->_environment->get('dump'))
-        {
-            print(
-                str_replace(
-                    [
-                        '{time}',
-                        '{host}',
-                        '{crid}'
-                    ],
-                    [
-                        (string) date('c'),
-                        (string) $connection->remoteAddress,
-                        (string) $connection->resourceId
-                    ],
-                    _('[{time}] [open] incoming connection {host}#{crid}')
                 ) . PHP_EOL
             );
         }
@@ -210,60 +181,6 @@ class Filesystem implements MessageComponentInterface
         $connection->send(
             $response
         );
-
-        // Disconnect
-        $connection->close();
-    }
-
-    public function onClose(
-        \Ratchet\ConnectionInterface $connection
-    ) {
-        // Dump event
-        if ($this->_environment->get('dump'))
-        {
-            print(
-                str_replace(
-                    [
-                        '{time}',
-                        '{host}',
-                        '{crid}'
-                    ],
-                    [
-                        (string) date('c'),
-                        (string) $connection->remoteAddress,
-                        (string) $connection->resourceId
-                    ],
-                    _('[{time}] [close] incoming connection {host}#{crid}')
-                ) . PHP_EOL
-            );
-        }
-    }
-
-    public function onError(
-        \Ratchet\ConnectionInterface $connection,
-        \Exception $exception
-    ) {
-        // Dump event
-        if ($this->_environment->get('dump'))
-        {
-            print(
-                str_replace(
-                    [
-                        '{time}',
-                        '{host}',
-                        '{crid}',
-                        '{info}'
-                    ],
-                    [
-                        (string) date('c'),
-                        (string) $connection->remoteAddress,
-                        (string) $connection->resourceId,
-                        (string) $exception->getMessage()
-                    ],
-                    _('[{time}] [error] incoming connection {host}#{crid} reason: {info}')
-                ) . PHP_EOL
-            );
-        }
 
         // Disconnect
         $connection->close();
