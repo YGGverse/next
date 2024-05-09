@@ -21,7 +21,7 @@ Based on [Ratchet](https://github.com/ratchetphp/Ratchet) asynchronous socket li
       * [x] custom index file name
       * [x] custom failure template
       * [x] custom data directory location
-  * [ ] KevaCoin file storage
+  * [ ] KevaCoin storage browser
   * [ ] Dynamic application
   * [ ] Reverse proxy
   * [ ] Stream server
