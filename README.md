@@ -79,8 +79,6 @@ Following list explains `key` dependencies and it `value` options (started with 
 
 * `host` - optional, default is `127.0.0.1` e.g. `localhost` connections only
 * `port` - optional, default value depends of server `type` selected e.g. `1900` for `nex` or `1965` for `gemini`
-* `fail` - **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
-* `dump` - `enable` or `disable` server debug feature, enabled by default
 * `type` - required, server protocol, also auto-defines default `port`, supported options:
   * =`nex` - [NEX Protocol](https://nightfall.city/nex/info/specification.txt)
     * `mode` - server implementation variant, `fs` (filesystem) by default
@@ -89,6 +87,8 @@ Following list explains `key` dependencies and it `value` options (started with 
         * `file` - **file name** that server try to open on directory path requested, disabled by default
         * `list` - show listing in directory requested (on index `file` not found), enabled by default
         * `date` - show file modification date (as gemfeed) in directory listing, disabled by default
+* `fail` - optional, **absolute path** to the failure template (e.g. `/path/to/error.gmi`), disabled by default
+* `dump` - optional, `enable` or `disable` server debug feature, enabled by default
 
 ### Autostart
 
