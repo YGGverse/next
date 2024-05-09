@@ -106,7 +106,7 @@ After=network.target
 Type=simple
 User=next
 Group=next
-ExecStart=/usr/bin/php /home/next/next/src/server.php type=nex root=/home/next/public
+ExecStart=/usr/bin/php /home/next/next/src/server.php type=nex mode=fs root=/home/next/public
 StandardOutput=file:/home/next/debug.log
 StandardError=file:/home/next/error.log
 Restart=on-failure
