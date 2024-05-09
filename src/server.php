@@ -19,11 +19,6 @@ $environment = new \Yggverse\Next\Model\Environment(
     )
 );
 
-// Init filesystem
-$filesystem = new \Yggverse\Next\Model\Filesystem(
-    $environment->get('root')
-);
-
 // Start server
 try
 {
@@ -36,8 +31,15 @@ try
                 case 'fs':
 
                     $controller = new \Yggverse\Next\Controller\Nex\Filesystem(
-                        $environment,
-                        $filesystem
+                        $environment
+                    );
+
+                break;
+
+                case 'keva':
+
+                    $controller = new \Yggverse\Next\Controller\Nex\Kevacoin(
+                        $environment
                     );
 
                 break;

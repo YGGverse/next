@@ -5,7 +5,8 @@
     "homepage": "https://github.com/yggverse/pulsar",
     "type": "project",
     "require": {
-        "cboden/ratchet": "^0.4.4"
+        "cboden/ratchet": "^0.4.4",
+        "kevachat/kevacoin": "^1.10"
     },
     "license": "MIT",
     "autoload": {
