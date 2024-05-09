@@ -85,7 +85,7 @@ Following list explains `key` dependencies and it `value` options (started with 
         * `file` - **file name** that server try to open on directory path requested, disabled by default
         * `list` - show listing in directory requested (on index `file` not found), enabled by default
         * `date` - show file modification date (as gemfeed) in directory listing, disabled by default
-      * = `kevacoin` - [KevaCoin](https://github.com/kevacoin-project) storage browser trough RPC connection to wallet (defined in `~./kevacoin/kevacoin.conf`)
+      * = `kevacoin` - [KevaCoin](https://github.com/kevacoin-project) storage browser by RPC connection to wallet (`~/.kevacoin/kevacoin.conf`)
         * `rpcscheme` - required, for example `http`
         * `rpcport` - required, default is `9992`
         * `rpchost` - required, remote or `localhost`
