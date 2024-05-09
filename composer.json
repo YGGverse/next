@@ -1,6 +1,6 @@
 {
     "name": "yggverse/next",
-    "description": "PHP 8 server for smallweb protocols",
+    "description": "PHP 8 server for different protocols",
     "keywords": [ "yggverse", "next", "nex", "nex-protocol", "gemini", "gemini-protocol", "ratchet", "server", "socket" ],
     "homepage": "https://github.com/yggverse/pulsar",
     "type": "project",
